@@ -38,9 +38,10 @@
         </div>
         <div class="row">
             <div class="col">
-                <my-component></my-component>
-                <my-component></my-component>
-                <my-component></my-component>
+                <form class="needs-validation mt-5" novalidate>
+                    <text-input name="first-name" type="text" label="First Name"></text-input>
+                    <text-input name="last-name" type="text" label="Last Name"></text-input>
+                    <text-input name="email" type="email" label="Email"></text-input>
             </div>
         </div>
     </div>
@@ -52,10 +53,33 @@
             message: "Hello, vue!"
         }
 
-        const myComponent = {
-            props: [],
+        const TextInput = {
+            props: {
+                name: String,
+                type: String,
+                label: String,
+                placeholder: String,
+                required: String,
+                min: String,
+                max: String,
+                value: String
+            },
             template: `
-                <h1>My Component</h1>
+                <div class="mb-3">
+                    <label :for="name" class="form-label">
+                        {{ label }}
+                    </label>
+                    <input
+                        :value="value"
+                        :type="type"
+                        :name="name"
+                        :id="name"
+                        :placeholder="placeholder"
+                        :required="required"
+                        :min="min"
+                        :max="max"
+                        class="form-control">
+                </div>
             `
         }
 
@@ -72,7 +96,7 @@
                 },
             },
             components: {
-                myComponent
+                TextInput
             }
         }).mount('#app');
     </script>
