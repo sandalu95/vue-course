@@ -39,9 +39,11 @@
         <div class="row">
             <div class="col">
                 <form class="needs-validation mt-5" novalidate>
-                    <text-input name="first-name" type="text" label="First Name"></text-input>
-                    <text-input name="last-name" type="text" label="Last Name"></text-input>
-                    <text-input name="email" type="email" label="Email"></text-input>
+                    <text-input required="required" name="first-name" type="text" label="First Name"></text-input>
+                    <text-input required="true" name="last-name" type="text" label="Last Name"></text-input>
+                    <text-input required="required" name="email" type="email" label="Email"></text-input>
+                    <hr>
+                    <input type="submit" class="btn btn-primary" value="Save">
             </div>
         </div>
     </div>
@@ -97,8 +99,37 @@
             },
             components: {
                 TextInput
-            }
+            },
+            mounted() {
+                console.log("Vue app mounted");
+                (function () {
+                    'use strict'
+
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.querySelectorAll('.needs-validation')
+
+                    // Loop over them and prevent submission
+                    Array.prototype.slice.call(forms)
+                        .forEach(function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                }
+
+                                form.classList.add('was-validated')
+                            }, false)
+                        })
+                })()
+            },
+            created() {
+                console.log("Vue app created");
+            },
+            updated() {
+                console.log("Vue app updated");
+            },
         }).mount('#app');
     </script>
 </body>
 </html>
+
