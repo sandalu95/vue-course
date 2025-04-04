@@ -42,7 +42,7 @@
                         {{book.authors[0].name}}
                     </div>
                     <span>
-                        <a href="#!" @click="$emit('removeBook', book.id)">
+                        <a href="#!" @click="$emit('removebook', book.id)">
                             <i class="bi bi-trash"></i>
                         </a>
                     </span>
@@ -65,9 +65,9 @@
             },
             methods: {
                 removeBook(id) {
-                    console.log("removeBook", id);
+                    console.log("Removing", id);
                     this.books.results = this.books.results.filter(function (item) {
-                        return item.id !== id;
+                        return item.id != id;
                     })
                 }
             },
