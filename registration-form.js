@@ -1,5 +1,5 @@
 const RegistrationForm = {
-    props: [],
+    props: ["items"],
     template: `
         <h3>Registration</h3>
         <hr>
@@ -8,12 +8,14 @@ const RegistrationForm = {
             <text-input name="last-name" label="Last Name" type="text" required="true"></text-input>
             <text-input name="email" label="Email" type="email" required="true"></text-input>
             <text-input name="password" label="Password" type="password" required="true"></text-input>
+            <select-input name="color" label="Favourite Color" :items="items"></select-input>
             <hr>
             <input class="btn btn-outline-primary" type="submit" value="Register">
         </form>
     `,
     components: {
         'text-input': TextInput,
+        'select-input': SelectInput,
     },
     mounted() {
         console.log('RegistrationForm mounted');
